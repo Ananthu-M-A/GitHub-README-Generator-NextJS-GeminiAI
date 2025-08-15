@@ -1,35 +1,29 @@
-// app/components/forms/RepositoryForm.tsx
 'use client';
 
 import { useState } from 'react';
-import { z } from 'zod';
 
-const repoSchema = z.object({
-  url: z.string().url().refine((url) => 
-    url.includes('github.com'), 
-    "Must be a valid GitHub repository URL"
-  )
-});
+interface RepositoryFormProps {
+  onSubmit: (url: string) => void;
+}
 
-export function RepositoryForm({ onSubmit }) {
-  const [url, setUrl] = useState('');
+export default function RepositoryForm({ onSubmit }: RepositoryFormProps) {
+  const [url, setUrl] = useState('https://github.com/Ananthu-M-A/Login-Page');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
 
     try {
-      const validation = repoSchema.safeParse({ url });
-      if (!validation.success) {
-        setError(validation.error.errors.message);
+      if (!url.includes('github.com')) {
+        setError('Please enter a valid GitHub repository URL');
         return;
       }
-      
       await onSubmit(url);
     } catch (err) {
+      console.error('Error processing repository:', err);
       setError('Failed to process repository');
     } finally {
       setIsLoading(false);
@@ -37,9 +31,9 @@ export function RepositoryForm({ onSubmit }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto">
-      <div className="mb-4">
-        <label className="block text-sm font-medium mb-2">
+    <form onSubmit={handleSubmit} className="space-y-6 bg-white rounded-xl shadow p-6 border border-gray-200 w-full max-w-xl mx-auto">
+      <div>
+        <label className="block text-sm font-medium mb-2 text-gray-700">
           GitHub Repository URL
         </label>
         <input
@@ -55,7 +49,7 @@ export function RepositoryForm({ onSubmit }) {
       <button
         type="submit"
         disabled={isLoading}
-        className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 disabled:opacity-50"
+        className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-200 disabled:opacity-50"
       >
         {isLoading ? 'Analyzing...' : 'Generate README'}
       </button>
