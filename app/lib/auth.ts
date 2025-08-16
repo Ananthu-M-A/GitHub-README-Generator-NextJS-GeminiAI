@@ -1,6 +1,13 @@
 import type { NextAuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 
+interface User {
+  id?: string;
+  email?: string;
+  name?: string;
+  image?: string;
+}
+
 export const authOptions: NextAuthOptions = {
   providers: [
     GitHubProvider({
@@ -11,7 +18,7 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async session({ session, token }) {
-      if (session.user) (session.user as any).id = token.sub;
+      if (session.user) (session.user as User).id = token.sub;
       return session;
     },
   },

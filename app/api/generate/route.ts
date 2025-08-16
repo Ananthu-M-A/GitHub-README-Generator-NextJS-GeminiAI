@@ -4,6 +4,7 @@ import { openai, OPENAI_MODEL } from "@/lib/openai";
 import { ratelimit } from "@/lib/rateLimit";
 import { GenerateSchema } from "@/lib/validation";
 import { buildBaseMarkdown } from "@/lib/markdown";
+import { ZodError } from "zod";
 
 export const runtime = "edge";
 export const dynamic = "force-dynamic";
@@ -11,8 +12,8 @@ export const dynamic = "force-dynamic";
 export async function POST(req: NextRequest) {
   try {
     const h = headers();
-    const ip = h.get("x-forwarded-for")?.split(",")[0] || "127.0.0.1";
-    const { success, reset } = await ratelimit.limit(`generate:${ip}`);
+    const ip = (await h).get("x-forwarded-for")?.split(",")[0] || "127.0.0.1";
+    const { success } = await ratelimit.limit(`generate:${ip}`);
     if (!success) {
       return new Response(JSON.stringify({ error: "Rate limit exceeded. Try again later." }), { status: 429 });
     }
@@ -42,7 +43,11 @@ export async function POST(req: NextRequest) {
     const markdown = md && md.length > 0 ? md : base;
 
     return Response.json({ markdown });
-  } catch (err: any) {
-    return new Response(err?.message || "Unexpected error", { status: 500 });
+  } catch (err) {
+    if (err instanceof ZodError) {
+      return new Response(err?.message || "Unexpected error", { status: 400 });
+    }
+    console.error("Error in /api/generate:", err);
+    return new Response("Unexpected error", { status: 500 });
   }
 }
