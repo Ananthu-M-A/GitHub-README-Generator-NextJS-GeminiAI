@@ -8,13 +8,20 @@ import CopyButton from "@/components/ui/CopyButton";
 
 export default function GeneratorShell() {
   const [form, setForm] = useState<GenerateInput>({
-    profile: { name: "", title: "", location: "", website: "", email: "", socials: [] },
+    profile: {
+      devName: "Ananthu M A",
+      location: "Kozhikode",
+      repoURL: "https://github.com/Ananthu-M-A/github-readme-generator",
+      email: "ananthumapookkad@gmail.com",
+      socials: [],
+    },
     project: {
-      name: "",
-      tagline: "",
-      description: "",
-      features: [],
-      tech: [],
+      name: "GitHub README Generator",
+      tagline: "Just another README generator",
+      description: "This is a simple README generator.",
+      features: ["README generation", "Markdown support", "AI integration", "Custom templates", "Authentication", "User"],
+      tech: ["Next.js", "TypeScript", "Tailwind CSS", "Gemini API"],
+      ideas: [""],
       install: ["npm install"],
       usage: ["npm run dev"],
       badges: true,
@@ -23,7 +30,9 @@ export default function GeneratorShell() {
     },
     existing: "",
   });
-  const [markdown, setMarkdown] = useState<string>("# Your README will appear here\n\nStart by filling the form and click Generate.");
+  const [markdown, setMarkdown] = useState<string>(
+    "# Your README will appear here\n\nStart by filling the form and click Generate."
+  );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -31,7 +40,11 @@ export default function GeneratorShell() {
     setError(null);
     const parsed = GenerateSchema.safeParse(form);
     if (!parsed.success) {
-      setError(parsed.error.issues.map(i => `${i.path.join(".")}: ${i.message}`).join("\n"));
+      setError(
+        parsed.error.issues
+          .map((i) => `${i.path.join(".")}: ${i.message}`)
+          .join("\n")
+      );
       return;
     }
     setLoading(true);
@@ -47,7 +60,7 @@ export default function GeneratorShell() {
       }
       const data = (await res.json()) as { markdown: string };
       setMarkdown(data.markdown);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
       setError(e.message);
     } finally {
@@ -60,7 +73,11 @@ export default function GeneratorShell() {
       <section className="space-y-4">
         <Editor value={form} onChange={setForm} />
         <div className="flex items-center gap-3">
-          <Button onClick={handleGenerate} loading={loading} aria-label="Generate README">
+          <Button
+            onClick={handleGenerate}
+            loading={loading}
+            aria-label="Generate README"
+          >
             Generate with AI
           </Button>
           <CopyButton text={markdown} />

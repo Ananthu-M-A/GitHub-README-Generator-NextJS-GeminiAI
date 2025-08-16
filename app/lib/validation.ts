@@ -4,10 +4,9 @@ export const SocialLinkSchema = z.object({ label: z.string().min(1), url: z.stri
 
 export const GenerateSchema = z.object({
   profile: z.object({
-    name: z.string().min(1, "Name is required"),
-    title: z.string().optional().default(""),
+    devName: z.string().min(1, "Name is required"),
     location: z.string().optional().default(""),
-    website: z.string().url().optional().or(z.literal("")),
+    repoURL: z.string().url().optional().or(z.literal("")),
     email: z.string().email().optional().or(z.literal("")),
     socials: z.array(SocialLinkSchema).optional().default([]),
   }),
@@ -17,6 +16,7 @@ export const GenerateSchema = z.object({
     description: z.string().min(1, "Description is required"),
     features: z.array(z.string()).optional().default([]),
     tech: z.array(z.string()).optional().default([]),
+    ideas: z.array(z.string()).optional().default([]),
     install: z.array(z.string()).optional().default([]),
     usage: z.array(z.string()).optional().default([]),
     badges: z.boolean().default(true),

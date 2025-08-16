@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 import { headers } from "next/headers";
-import { openai, OPENAI_MODEL } from "@/lib/openai";
+import { model } from "@/lib/gemini";
 import { ratelimit } from "@/lib/rateLimit";
 import { GenerateSchema } from "@/lib/validation";
 import { buildBaseMarkdown } from "@/lib/markdown";
@@ -33,13 +33,9 @@ export async function POST(req: NextRequest) {
       { role: "user" as const, content: `Base README to improve:\n\n${base}` },
     ];
 
-    const completion = await openai.chat.completions.create({
-      model: OPENAI_MODEL,
-      temperature: 0.5,
-      messages,
-    });
+    const result = await model.generateContent(messages.map(m => m.content).join("\n"));
+    const md = result.response.text()
 
-    const md = completion.choices[0]?.message?.content?.trim();
     const markdown = md && md.length > 0 ? md : base;
 
     return Response.json({ markdown });
