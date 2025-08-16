@@ -10,10 +10,10 @@ import { ZodError } from "zod";
 export default function GeneratorShell() {
   const [form, setForm] = useState<GenerateInput>({
     profile: {
-      devName: "Ananthu M A",
-      location: "Kozhikode",
+      devName: "",
+      location: "",
       repoURL: "",
-      email: "ananthumapookkad@gmail.com",
+      email: "",
     },
     project: {
       name: "",
@@ -26,7 +26,7 @@ export default function GeneratorShell() {
       usage: ["npm run dev"],
       badges: true,
       includeToc: true,
-      license: "MIT",
+      license: "",
     },
     existing: "",
   });
