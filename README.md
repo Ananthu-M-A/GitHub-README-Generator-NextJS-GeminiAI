@@ -1,47 +1,60 @@
 # GitHub README Generator
 
-> A README generator.
+> A concise README generator.
 
-![build](https://img.shields.io/badge/build-passing-brightgreen?style=for-the-badge) ![license](https://img.shields.io/badge/license-Proprietary--Ananthu%20M%20A-blueviolet?style=for-the-badge)
+![build](https://img.shields.io/badge/build-passing-brightgreen) ![license](https://img.shields.io/badge/license-Proprietary-blue)
 
 ## About
 
-This project generates README files with the help of AI.
+This project generates README files.
+
+## Table of Contents
+
+- [About](#about)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [License](#license)
+- [Author](#author)
 
 ## Features
 
-* README file generation
-* Markdown support
+- README file generation
+- Markdown support
+- AI integration
+- Customizable templates
+- Authentication
+- User management
 
 ## Tech Stack
 
-* Next.js
-* TypeScript
-* Tailwind CSS
-* Gemini API
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Gemini API
 
 ## Getting Started
 
 1. Clone the repository: `git clone <repository_url>`
-2. Install dependencies: `npm install`
-3. Replace environment variables in the **.env.example** file
+2. Navigate to the project directory: `cd github-readme-generator`
+3. Install dependencies: `npm install`
+4. Copy the `.env.example` file to `.env` and configure environment variables.
 
 ## Usage
 
 Run the development server: `npm run dev`
 
+
 ## License
 
-Copyright © 2025 [Ananthu M A](https://ananthuma.com).  
-All rights reserved.
+This project is licensed under Proprietary terms.  Specific licensing details will be provided upon request.  Contact the author for more information.
 
-This project is proprietary and licensed exclusively to **Ananthu M A**.  
-Unauthorized use, copying, modification, distribution, or resale of this software  
-is strictly prohibited without prior written permission.  
 
-### Author
+## Author
 
-**Ananthu M A** — Kozhikode, Kerala, India
+**Ananthu M A**
 
-[GitHub Profile](https://github.com/Ananthu-M-A/github-readme-generator) | [Email: ananthumapookkad@gmail.com](mailto:ananthumapookkad@gmail.com)
-
+- GitHub: [Ananthu-M-A](https://github.com/Ananthu-M-A)
+- Portfolio: [ananthuma.com](https://ananthuma.com)
+- Email: ananthumapookkad@gmail.com
