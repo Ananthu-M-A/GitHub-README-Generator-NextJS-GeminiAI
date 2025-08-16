@@ -6,10 +6,16 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "README Generator",
+  authors: [{ name: "Ananthu M A", url: "https://ananthuma.com" }],
+  keywords: ["GitHub", "README", "Generator", "AI", "Markdown"],
   description: "Generate polished GitHub READMEs with AI",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="min-h-dvh">

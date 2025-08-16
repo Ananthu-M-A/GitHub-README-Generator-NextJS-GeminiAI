@@ -1,14 +1,11 @@
 import { z } from "zod";
 
-export const SocialLinkSchema = z.object({ label: z.string().min(1), url: z.string().url() });
-
 export const GenerateSchema = z.object({
   profile: z.object({
     devName: z.string().min(1, "Name is required"),
     location: z.string().optional().default(""),
     repoURL: z.string().url().optional().or(z.literal("")),
     email: z.string().email().optional().or(z.literal("")),
-    socials: z.array(SocialLinkSchema).optional().default([]),
   }),
   project: z.object({
     name: z.string().min(1, "Project name is required"),
@@ -21,7 +18,7 @@ export const GenerateSchema = z.object({
     usage: z.array(z.string()).optional().default([]),
     badges: z.boolean().default(true),
     includeToc: z.boolean().default(true),
-    license: z.string().optional().default("MIT"),
+    license: z.string().optional(),
   }),
   existing: z.string().optional().default(""),
 });

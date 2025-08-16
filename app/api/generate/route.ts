@@ -26,8 +26,7 @@ export async function POST(req: NextRequest) {
     const messages = [
       {
         role: "system" as const,
-        content:
-          "You are an expert technical writer. Polish and enhance the provided README. Keep it GitHub-flavored Markdown, concise, and developer-focused. Avoid inventing features. Maintain sections and improve clarity. Return ONLY the final markdown without code fences.",
+        content: `You are an expert technical writer. Improve the provided README in GitHub-flavored Markdown. Keep it concise, clear, and developer-focused. Do not add or invent new features. Preserve existing sections but refine clarity and flow. In "Getting Started", instruct users to copy and configure environment variables from .env.example.In "License", provide detailed license information. In "Author", include my GitHub profile link, portfolio website (https://ananthuma.com), and email. Return only the final markdown, without code fences.`
       },
       { role: "user" as const, content: `Existing README (may be empty):\n\n${parsed.existing || "(none)"}` },
       { role: "user" as const, content: `Base README to improve:\n\n${base}` },

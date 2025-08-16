@@ -3,6 +3,7 @@ import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
 import type { GenerateInput } from "@/lib/validation";
 import { useState } from "react";
+import LicenseSelector from "./ui/LicenseSelector";
 
 export default function Editor({
   value,
@@ -285,6 +286,12 @@ export default function Editor({
         rows={6}
         value={v.existing}
         onChange={(e) => onChange({ ...v, existing: e.target.value })}
+      />
+      <LicenseSelector
+        value={v.project.license as string}
+        onChange={(license: string) =>
+          onChange({ ...v, project: { ...v.project, license } })
+        }
       />
     </div>
   );

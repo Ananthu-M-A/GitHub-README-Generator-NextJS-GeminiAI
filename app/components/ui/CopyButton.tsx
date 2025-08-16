@@ -13,7 +13,6 @@ export default function CopyButton({ text }: { text: string }) {
           setTimeout(() => setCopied(false), 1500);
         } catch (error) {
           console.error("Failed to copy text: ", error);
-          // Optionally, provide user feedback here
         }
       }}
       aria-label="Copy README"

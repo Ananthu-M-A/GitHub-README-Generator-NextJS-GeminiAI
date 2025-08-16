@@ -5,23 +5,23 @@ import Editor from "@/components/Editor";
 import Preview from "@/components/Preview";
 import { Button } from "@/components/ui/Button";
 import CopyButton from "@/components/ui/CopyButton";
+import { ZodError } from "zod";
 
 export default function GeneratorShell() {
   const [form, setForm] = useState<GenerateInput>({
     profile: {
       devName: "Ananthu M A",
       location: "Kozhikode",
-      repoURL: "https://github.com/Ananthu-M-A/github-readme-generator",
+      repoURL: "",
       email: "ananthumapookkad@gmail.com",
-      socials: [],
     },
     project: {
-      name: "GitHub README Generator",
-      tagline: "Just another README generator",
-      description: "This is a simple README generator.",
-      features: ["README generation", "Markdown support", "AI integration", "Custom templates", "Authentication", "User"],
-      tech: ["Next.js", "TypeScript", "Tailwind CSS", "Gemini API"],
-      ideas: [""],
+      name: "",
+      tagline: "",
+      description: "",
+      features: [],
+      tech: [],
+      ideas: [],
       install: ["npm install"],
       usage: ["npm run dev"],
       badges: true,
@@ -60,9 +60,12 @@ export default function GeneratorShell() {
       }
       const data = (await res.json()) as { markdown: string };
       setMarkdown(data.markdown);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (e: any) {
-      setError(e.message);
+    } catch (e) {
+      if (e instanceof ZodError) {
+        setError(e.message);
+      } else {
+        setError("Unexpected error");
+      }
     } finally {
       setLoading(false);
     }
