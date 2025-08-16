@@ -24,6 +24,7 @@ export default function Editor({
         <Input
           label="Developer Name"
           value={v.profile.devName}
+          placeholder="Ananthu M A"
           onChange={(e) =>
             onChange({
               ...v,
@@ -34,6 +35,7 @@ export default function Editor({
         <Input
           label="Location"
           value={v.profile.location}
+          placeholder="Kozhikode"
           onChange={(e) =>
             onChange({
               ...v,
@@ -44,6 +46,7 @@ export default function Editor({
         <Input
           label="Repository Web URL"
           value={v.profile.repoURL}
+          placeholder="https://github.com/username/repo"
           onChange={(e) =>
             onChange({
               ...v,
@@ -54,6 +57,7 @@ export default function Editor({
         <Input
           label="Email"
           value={v.profile.email}
+          placeholder="ananthumapookkad@gmail.com"
           onChange={(e) =>
             onChange({ ...v, profile: { ...v.profile, email: e.target.value } })
           }
@@ -65,6 +69,7 @@ export default function Editor({
         <Input
           label="Project Name"
           value={v.project.name}
+          placeholder="My Awesome Project"
           onChange={(e) =>
             onChange({ ...v, project: { ...v.project, name: e.target.value } })
           }
@@ -72,6 +77,7 @@ export default function Editor({
         <Input
           label="Tagline"
           value={v.project.tagline}
+          placeholder="An amazing project"
           onChange={(e) =>
             onChange({
               ...v,
@@ -84,6 +90,7 @@ export default function Editor({
         label="Short Description"
         rows={4}
         value={v.project.description}
+        placeholder="A brief description of your project"
         onChange={(e) =>
           onChange({
             ...v,
@@ -255,6 +262,7 @@ export default function Editor({
           label="Install Steps (one per line)"
           rows={4}
           value={v.project.install.join("\n")}
+          placeholder="Enter installation commands here"
           onChange={(e) =>
             onChange({
               ...v,
@@ -269,6 +277,7 @@ export default function Editor({
           label="Usage Steps (one per line)"
           rows={4}
           value={v.project.usage.join("\n")}
+          placeholder="Enter commands to run server"
           onChange={(e) =>
             onChange({
               ...v,
@@ -285,6 +294,7 @@ export default function Editor({
         label="Existing README (optional)"
         rows={6}
         value={v.existing}
+        placeholder="Paste your existing README content here if you want to include it"
         onChange={(e) => onChange({ ...v, existing: e.target.value })}
       />
       <LicenseSelector
