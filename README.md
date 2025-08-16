@@ -24,7 +24,7 @@ This project generates README files with the help of AI.
 
 1. Clone the repository: `git clone <repository_url>`
 2. Install dependencies: `npm install`
-3. Replace environment variables in the .env.example file
+3. Replace environment variables in the **.env.example** file
 
 ## Usage
 
@@ -44,3 +44,4 @@ is strictly prohibited without prior written permission.
 **Ananthu M A** — Kozhikode, Kerala, India
 
 [GitHub Profile](https://github.com/Ananthu-M-A/github-readme-generator) | [Email: ananthumapookkad@gmail.com](mailto:ananthumapookkad@gmail.com)
+
