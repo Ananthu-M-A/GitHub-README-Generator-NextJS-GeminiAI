@@ -5,10 +5,19 @@ import AuthButtons from "@/components/AuthButtons";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "README Generator",
+  title: "GitHub README Generator | AI-Powered Markdown Tool",
   authors: [{ name: "Ananthu M A", url: "https://ananthuma.com" }],
-  keywords: ["GitHub", "README", "Generator", "AI", "Markdown"],
-  description: "Generate polished GitHub READMEs with AI",
+  keywords: [
+    "GitHub README Generator",
+    "AI README Generator",
+    "Markdown README Creator",
+    "GitHub Profile Generator",
+    "Generate README with AI",
+    "README template tool",
+    "GitHub project documentation",
+  ],
+  description:
+    "Create professional and SEO-friendly GitHub READMEs instantly with AI. Generate polished markdown files for projects, profiles, and documentation.",
 };
 
 export default function RootLayout({
