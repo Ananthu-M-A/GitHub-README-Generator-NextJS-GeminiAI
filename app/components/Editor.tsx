@@ -57,7 +57,7 @@ export default function Editor({
         <Input
           label="Email"
           value={v.profile.email}
-          placeholder="ananthumapookkad@gmail.com"
+          placeholder="me@ananthuma.com"
           onChange={(e) =>
             onChange({ ...v, profile: { ...v.profile, email: e.target.value } })
           }
